@@ -3,6 +3,7 @@ import { aylikTaksit, kalan, odenen, toNumber } from '../lib/calc'
 import { formatTL, parseNumber } from '../lib/money'
 import ConfirmDialog from './ConfirmDialog'
 import MonthSelect from './MonthSelect'
+import NoteField from './NoteField'
 
 const fieldClass =
   'w-full max-w-full min-w-0 min-h-11 rounded-xl bg-zinc-950 border border-zinc-700 px-3 text-base text-white placeholder:text-zinc-500 focus:outline-none focus:ring-2 focus:ring-zinc-400'
@@ -220,16 +221,14 @@ export default function ItemCard({
             <p className="sr-only">Ödenen tutar {formatTL(paidAmount)}</p>
           </div>
 
-          <label className="block">
+          <div className="block min-w-0">
             <FieldLabel>Not</FieldLabel>
-            <textarea
+            <NoteField
               value={item.note || ''}
-              onChange={(event) => onUpdate({ note: event.target.value })}
-              rows={3}
-              className="w-full rounded-xl bg-zinc-950 border border-zinc-700 px-3 py-3 text-base text-white placeholder:text-zinc-500 focus:outline-none focus:ring-2 focus:ring-zinc-400 resize-y min-h-24"
+              onChange={(next) => onUpdate({ note: next })}
               placeholder="Açıklama, alışveriş yeri, garanti, ölçü, not..."
             />
-          </label>
+          </div>
         </div>
       ) : null}
 
