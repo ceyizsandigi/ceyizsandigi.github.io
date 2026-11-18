@@ -1,9 +1,16 @@
 @import "tailwindcss";
 
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 html,
 body,
 #root {
   min-height: 100%;
+  max-width: 100%;
   overflow-x: hidden;
 }
 
@@ -12,4 +19,5 @@ body {
   background-color: #000000;
   color: #f3f4f6;
   -webkit-tap-highlight-color: transparent;
+  word-break: break-word;
 }

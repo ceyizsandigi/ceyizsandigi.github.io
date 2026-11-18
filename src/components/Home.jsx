@@ -38,6 +38,7 @@ export default function Home() {
   const [selectedMonth, setSelectedMonth] = useState(currentMonth())
   const [filter, setFilter] = useState('all')
   const [addingCategory, setAddingCategory] = useState(false)
+  const [expandSignal, setExpandSignal] = useState({ token: 0, open: false })
 
   const summary = useMemo(
     () => summarizeFinance(items, selectedMonth),
@@ -104,7 +105,7 @@ export default function Home() {
         items={items}
         onSeedDefaultList={seedDefaultList}
       />
-      <main className="mx-auto w-full max-w-lg px-4 py-5 space-y-6 pb-10">
+      <main className="mx-auto w-full max-w-lg min-w-0 px-3 sm:px-4 py-5 space-y-6 pb-10 box-border">
         {error ? (
           <div className="rounded-2xl bg-red-950/70 border border-red-900 px-4 py-3 text-sm text-red-200 flex gap-3 items-start">
             <p className="flex-1">{error}</p>
@@ -176,13 +177,50 @@ export default function Home() {
             </button>
           </div>
         ) : (
-          <div className="space-y-4">
+          <div className="space-y-4 min-w-0 w-full">
+            <div className="flex items-center gap-2 min-w-0 flex-wrap">
+              <button
+                type="button"
+                onClick={() =>
+                  setExpandSignal((prev) => ({
+                    token: prev.token + 1,
+                    open: true,
+                  }))
+                }
+                className="h-8 px-3 rounded-lg border border-zinc-700 bg-zinc-900 text-zinc-300 text-xs"
+              >
+                Tümünü aç
+              </button>
+              <button
+                type="button"
+                onClick={() =>
+                  setExpandSignal((prev) => ({
+                    token: prev.token + 1,
+                    open: false,
+                  }))
+                }
+                className="h-8 px-3 rounded-lg border border-zinc-700 bg-zinc-900 text-zinc-300 text-xs"
+              >
+                Tümünü kapa
+              </button>
+              <button
+                type="button"
+                disabled={busy}
+                onClick={() => setAddingCategory(true)}
+                className="ml-auto h-8 px-3 rounded-lg bg-white text-black text-xs font-medium disabled:opacity-60"
+              >
+                {busy ? '…' : '+ Kategori'}
+              </button>
+            </div>
             {visibleCategories.map(({ category, items: categoryItems }) => (
               <CategoryCard
-                key={category.id}
+                key={`${category.id}-${expandSignal.token}`}
                 category={category}
                 busy={busy}
                 items={categoryItems}
+                defaultOpen={expandSignal.open}
+                itemsDefaultOpen={expandSignal.open}
+                expandToken={expandSignal.token}
                 onRename={(name) => renameCategory(category.id, name)}
                 onDelete={() => deleteCategory(category.id)}
                 onAddItem={() => addItem(category.id)}
@@ -190,14 +228,6 @@ export default function Home() {
                 onDeleteItem={deleteItem}
               />
             ))}
-            <button
-              type="button"
-              disabled={busy}
-              onClick={() => setAddingCategory(true)}
-              className="w-full min-h-11 rounded-xl border border-zinc-700 bg-zinc-900 text-white text-base disabled:opacity-60"
-            >
-              {busy ? 'İşleniyor…' : '+ Kategori ekle'}
-            </button>
           </div>
         )}
       </main>

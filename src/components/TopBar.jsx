@@ -45,13 +45,15 @@ export default function TopBar({
   }
 
   return (
-    <header className="sticky top-0 z-20 bg-black/95 backdrop-blur border-b border-zinc-800 px-4 py-3 flex items-center justify-between gap-3">
-      <h1 className="text-lg font-semibold text-white shrink-0">Çeyiz Takip</h1>
+    <header className="sticky top-0 z-30 bg-black/95 backdrop-blur border-b border-zinc-800 px-3 sm:px-4 py-3 flex items-center justify-between gap-2 min-w-0">
+      <h1 className="text-base sm:text-lg font-semibold text-white shrink-0 truncate">
+        Çeyiz Takip
+      </h1>
       <div className="flex items-center gap-2 min-w-0">
-        <span className="text-xs text-zinc-400 truncate text-right">
+        <span className="text-xs text-zinc-400 truncate text-right max-w-[40vw] sm:max-w-none">
           {STATUS_TEXT[saveStatus] || ''}
         </span>
-        <div className="relative" ref={menuRef}>
+        <div className="relative shrink-0" ref={menuRef}>
           <button
             type="button"
             aria-label="Menü"
@@ -61,7 +63,7 @@ export default function TopBar({
             ⋮
           </button>
           {open ? (
-            <div className="absolute right-0 mt-2 w-56 rounded-xl bg-zinc-900 border border-zinc-700 overflow-hidden shadow-lg">
+            <div className="absolute right-0 mt-2 w-56 max-w-[calc(100vw-1.5rem)] rounded-xl bg-zinc-900 border border-zinc-700 overflow-hidden shadow-lg z-[100]">
               <button
                 type="button"
                 onClick={handleDownloadCsv}
