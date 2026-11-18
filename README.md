@@ -1,6 +1,9 @@
-# Çeyiz Takip
+# Sandık
 
-Telefondan kullanılacak Türkçe çeyiz takip web uygulaması (Vite + React + Tailwind + Supabase).
+Telefondan kullanılacak Türkçe ev hazırlık / çeyiz takip web uygulaması (Vite + React + Tailwind + Supabase).
+
+Uygulama adı: **Sandık**  
+Canlı site: https://ceyizsandigi.github.io/
 
 ## Yerel kurulum
 

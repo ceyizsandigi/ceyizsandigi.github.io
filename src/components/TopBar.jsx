@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { supabase } from '../lib/supabase'
 import { downloadCeyizCsv } from '../lib/exportCsv'
+import { APP_NAME } from '../lib/brand'
 
 const STATUS_TEXT = {
   idle: '',
@@ -47,7 +48,7 @@ export default function TopBar({
   return (
     <header className="sticky top-0 z-30 bg-black/95 backdrop-blur border-b border-zinc-800 px-3 sm:px-4 py-3 flex items-center justify-between gap-2 min-w-0">
       <h1 className="text-base sm:text-lg font-semibold text-white shrink-0 truncate">
-        Çeyiz Takip
+        {APP_NAME}
       </h1>
       <div className="flex items-center gap-2 min-w-0">
         <span className="text-xs text-zinc-400 truncate text-right max-w-[40vw] sm:max-w-none">

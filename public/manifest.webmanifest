@@ -1,6 +1,7 @@
 {
-  "name": "Çeyiz Takip",
-  "short_name": "Çeyiz",
+  "name": "Sandık",
+  "short_name": "Sandık",
+  "description": "Yuvanı adım adım hazırla",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",

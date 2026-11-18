@@ -5,6 +5,7 @@ import {
   supabase,
   translateAuthError,
 } from '../lib/supabase'
+import { APP_NAME, APP_TAGLINE } from '../lib/brand'
 
 export default function LoginForm() {
   const [email, setEmail] = useState('')
@@ -41,9 +42,17 @@ export default function LoginForm() {
         onSubmit={handleSubmit}
         className="w-full max-w-md rounded-2xl bg-zinc-900 border border-zinc-800 p-6 space-y-5"
       >
-        <div>
-          <h1 className="text-2xl font-semibold text-white">Çeyiz Takip</h1>
-          <p className="mt-1 text-zinc-400 text-base">Hesabınıza giriş yapın</p>
+        <div className="space-y-3">
+          <img
+            src={`${import.meta.env.BASE_URL}icon.svg`}
+            alt=""
+            className="size-14 rounded-2xl border border-zinc-700"
+          />
+          <div>
+            <h1 className="text-2xl font-semibold text-white">{APP_NAME}</h1>
+            <p className="mt-1 text-zinc-400 text-base">{APP_TAGLINE}</p>
+            <p className="mt-3 text-zinc-500 text-sm">Hesabınıza giriş yapın</p>
+          </div>
         </div>
 
         <label className="block space-y-2">
