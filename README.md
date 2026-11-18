@@ -42,15 +42,30 @@ npm run preview
 npm test
 ```
 
-## Vercel’e yayınlama
+## Yayınlama
 
-Statik site olarak deploy edin. Vercel proje ayarlarına şu ortam değişkenlerini ekleyin:
+### Mobil için önerilen adres (GitHub Pages)
+
+Bazı Türkiye mobil operatörleri `*.vercel.app` adreslerini kesebiliyor (`ERR_CONNECTION_CLOSED`). Bu yüzden telefonda şu adresi kullanın:
+
+**https://hakan-cod.github.io/ceyiztakipuygulamasi/**
+
+GitHub repo Secrets:
 
 - `VITE_SUPABASE_URL`
 - `VITE_SUPABASE_ANON_KEY`
 
-Build komutu: `npm run build`  
-Çıktı klasörü: `dist`
+`main` branch’e push olunca Pages otomatik güncellenir.
+
+### Vercel (Wi‑Fi / bilgisayar)
+
+- `VITE_SUPABASE_URL`
+- `VITE_SUPABASE_ANON_KEY`
+
+Build: `npm run build` · çıktı: `dist`  
+Adres: `https://ceyiztakipuygulamasi.vercel.app`
+
+Kalıcı çözüm: kendi alan adını Vercel’e bağlamak (ör. `ceyiztakip.com`) — operatör `vercel.app` engelini aşar.
 
 ## Telefona ekleme
 
