@@ -30,14 +30,28 @@ export default function CategoryCard({
     if (!menuOpen || !menuButtonRef.current) return undefined
 
     function updatePosition() {
-      const rect = menuButtonRef.current.getBoundingClientRect()
+      const button = menuButtonRef.current
+      const menu = menuRef.current
+      if (!button) return
+
+      const rect = button.getBoundingClientRect()
+      const gap = 6
+      const padding = 12
+      const menuHeight = menu?.offsetHeight || 96
+      const spaceBelow = window.innerHeight - rect.bottom - padding
+      const spaceAbove = rect.top - padding
+      const openUp = spaceBelow < menuHeight && spaceAbove > spaceBelow
+      const rawTop = openUp ? rect.top - menuHeight - gap : rect.bottom + gap
+      const maxTop = Math.max(padding, window.innerHeight - menuHeight - padding)
+
       setMenuPos({
-        top: rect.bottom + 6,
-        right: Math.max(8, window.innerWidth - rect.right),
+        top: Math.min(Math.max(padding, rawTop), maxTop),
+        right: Math.max(padding, window.innerWidth - rect.right),
       })
     }
 
     updatePosition()
+    requestAnimationFrame(updatePosition)
     window.addEventListener('resize', updatePosition)
     window.addEventListener('scroll', updatePosition, true)
     return () => {
